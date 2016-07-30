@@ -17,6 +17,7 @@ var config;
 
 switch (process.env.npm_lifecycle_event) {
     case 'build':
+    case 'stats':
         console.log('Build config selected!\n');
         config = merge(
             commonConfig.generateCommonConfig(PATHS),

@@ -4,7 +4,8 @@
   "description": "Simple Kanban application (front-end)",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "stats": "webpack --profile --json > stats.json"
   },
   "repository": {
     "type": "git",

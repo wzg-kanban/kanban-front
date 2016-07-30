@@ -3,6 +3,7 @@
 # -------------------
 /node_modules
 /build
+stats.json
 npm-debug.log
 
 # --------------------------
