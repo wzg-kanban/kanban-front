@@ -5,6 +5,7 @@ const validate = require('webpack-validator');
 const commonConfig = require('./webpack/common.config');
 const stylesConfig = require('./webpack/styles.config');
 const serverConfig = require('./webpack/server.config');
+const codeConfig = require('./webpack/code.config');
 
 const PATHS = {
     app: path.join(__dirname, 'app'),
@@ -18,7 +19,8 @@ switch (process.env.npm_lifecycle_event) {
         console.log('Build config selected!\n');
         config = merge(
             commonConfig.generateCommonConfig(PATHS),
-            stylesConfig.generateStylesConfig(PATHS.app)
+            stylesConfig.generateStylesConfig(PATHS.app),
+            codeConfig.generateMinifyConfig()
         );
         break;
     default:
