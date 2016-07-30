@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Simple Kanban application (front-end)",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
     "babel-preset-es2015": "^6.9.0",
     "html-webpack-plugin": "^2.22.0",
     "jest-cli": "^14.0.1",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-merge": "^0.14.1",
+    "webpack-validator": "^2.2.6"
   }
 }

@@ -1,12 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const merge = require('webpack-merge');
+const validate = require('webpack-validator');
+
 const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build')
 };
 
-module.exports = {
+const common = {
     entry: {
         app: PATHS.app
     },
@@ -24,7 +27,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
+                loader: 'babel',
                 query: {
                     presets: ['es2015']
                 }
@@ -32,3 +35,17 @@ module.exports = {
         ]
     }
 };
+
+var config;
+
+switch (process.env.npm_lifecycle_event) {
+    case 'build':
+        console.log('Build config selected!\n');
+        config = merge(common, {});
+        break;
+    default:
+        console.log('Default config selected!\n');
+        config = merge(common, {});
+}
+
+module.exports = validate(config);
