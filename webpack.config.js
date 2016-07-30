@@ -1,39 +1,13 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const merge = require('webpack-merge');
 const validate = require('webpack-validator');
+
+const serverConfig = require('./webpack/server.config');
+const commonConfig = require('./webpack/common.config');
 
 const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build')
-};
-
-const common = {
-    entry: {
-        app: PATHS.app
-    },
-    output: {
-        path: PATHS.build,
-        filename: '[name].js'
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Kanban App'
-        })
-    ],
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
-                query: {
-                    presets: ['es2015']
-                }
-            }
-        ]
-    }
 };
 
 var config;
@@ -41,11 +15,14 @@ var config;
 switch (process.env.npm_lifecycle_event) {
     case 'build':
         console.log('Build config selected!\n');
-        config = merge(common, {});
+        config = commonConfig.generateCommonConfig(PATHS);
         break;
     default:
         console.log('Default config selected!\n');
-        config = merge(common, {});
+        config = merge(
+            commonConfig.generateCommonConfig(PATHS),
+            serverConfig.generateServerConfig()
+        );
 }
 
 module.exports = validate(config);
