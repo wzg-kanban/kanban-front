@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports.generateMinifyConfig = function() {
     return {
@@ -10,4 +11,14 @@ exports.generateMinifyConfig = function() {
             })
         ]
     };
-}
+};
+
+exports.clean = function(path) {
+    return {
+        plugins: [
+            new CleanWebpackPlugin([path], {
+                root: process.cwd()
+            })
+        ]
+    };
+};

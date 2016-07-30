@@ -20,12 +20,17 @@ switch (process.env.npm_lifecycle_event) {
         console.log('Build config selected!\n');
         config = merge(
             commonConfig.generateCommonConfig(PATHS),
-            stylesConfig.generateStylesConfig(PATHS.app),
             variableConfig.generateFreeVariable(
                 'process.env.NODE_ENV',
                 'production'
             ),
-            codeConfig.generateMinifyConfig()
+            commonConfig.extractBundle({
+                name: 'vendor',
+                entries: ['react']
+            }),
+            codeConfig.generateMinifyConfig(),
+            stylesConfig.extractCSS(PATHS.app),
+            codeConfig.clean(PATHS.build)
         );
         break;
     default:

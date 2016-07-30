@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 exports.generateCommonConfig = function(PATHS) {
@@ -7,7 +8,8 @@ exports.generateCommonConfig = function(PATHS) {
         },
         output: {
             path: PATHS.build,
-            filename: '[name].js'
+            filename: '[name].[chunkhash:5].js',
+            chunkFilename: '[chunkhash:5].js'
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -26,5 +28,20 @@ exports.generateCommonConfig = function(PATHS) {
                 }
             ]
         }
+    };
+};
+
+//TODO: maybe try to split bundles like this: http://survivejs.com/webpack/building-with-webpack/splitting-bundles/
+exports.extractBundle = function(options) {
+    const entry = {};
+    entry[options.name] = options.entries;
+
+    return {
+        entry: entry,
+        plugins: [
+            new webpack.optimize.CommonsChunkPlugin({
+                names: [options.name, 'manifest']
+            })
+        ]
     };
 };
