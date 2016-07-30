@@ -26,6 +26,9 @@ exports.generateCommonConfig = function(PATHS) {
                     }
                 }
             ]
+        },
+        resolve: {
+            extensions: ['', '.js', '.jsx']
         }
     };
 };

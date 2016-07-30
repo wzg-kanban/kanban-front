@@ -1,4 +1,5 @@
 //TODO: look at: https://github.com/ruanyf/css-modules-demos and try to improve css-modules
+//TODO: there is problem with CSS hash reloading when changing js and vice versa
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 

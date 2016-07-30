@@ -24,8 +24,8 @@ switch (process.env.npm_lifecycle_event) {
             {
                 output: {
                     path: PATHS.build,
-                    filename: '[name].[chunkhash].js',
-                    chunkFilename: '[chunkhash].js'
+                    filename: '[name].[chunkhash:5].js',
+                    chunkFilename: '[chunkhash:5].js'
                 }
             },
             variableConfig.generateFreeVariable(
