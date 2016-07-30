@@ -37,6 +37,7 @@ switch (process.env.npm_lifecycle_event) {
             }),
             codeConfig.generateMinifyConfig(),
             stylesConfig.extractCSS(PATHS.app),
+            stylesConfig.purifyCSS([PATHS.app]),
             codeConfig.clean(PATHS.build)
         );
         break;

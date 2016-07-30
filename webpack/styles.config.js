@@ -1,5 +1,6 @@
 //TODO: look at: https://github.com/ruanyf/css-modules-demos and try to improve css-modules
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 
 exports.generateStylesConfig = function(PATHS) {
     return {
@@ -32,4 +33,15 @@ exports.extractCSS = function(paths) {
             new ExtractTextPlugin('[name].[chunkhash:5].css')
         ]
     };
+};
+
+exports.purifyCSS = function(paths) {
+    return {
+        plugins: [
+            new PurifyCSSPlugin({
+                basePath: process.cwd(),
+                paths: paths
+            }),
+        ]
+    }
 };
