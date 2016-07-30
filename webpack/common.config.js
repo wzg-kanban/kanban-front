@@ -8,8 +8,7 @@ exports.generateCommonConfig = function(PATHS) {
         },
         output: {
             path: PATHS.build,
-            filename: '[name].[chunkhash:5].js',
-            chunkFilename: '[chunkhash:5].js'
+            filename: '[name].js'
         },
         plugins: [
             new HtmlWebpackPlugin({

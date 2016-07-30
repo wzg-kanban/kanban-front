@@ -20,6 +20,13 @@ switch (process.env.npm_lifecycle_event) {
         console.log('Build config selected!\n');
         config = merge(
             commonConfig.generateCommonConfig(PATHS),
+            {
+                output: {
+                    path: PATHS.build,
+                    filename: '[name].[chunkhash].js',
+                    chunkFilename: '[chunkhash].js'
+                }
+            },
             variableConfig.generateFreeVariable(
                 'process.env.NODE_ENV',
                 'production'
