@@ -2,6 +2,7 @@
 # | Project ignores |
 # -------------------
 /node_modules
+/build
 
 # --------------------------
 # | JetBrains IDEs ignores |
