@@ -13,9 +13,10 @@ const PATHS = {
     build: path.join(__dirname, 'build')
 };
 
-var config;
+var config, TARGET = process.env.npm_lifecycle_event;
+process.env.BABEL_ENV = TARGET;
 
-switch (process.env.npm_lifecycle_event) {
+switch (TARGET) {
     case 'build':
     case 'stats':
         console.log('Build config selected!\n');
