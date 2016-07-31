@@ -9,13 +9,14 @@ const codeConfig = require('./webpack/code.config');
 const variableConfig = require('./webpack/variables.config');
 
 const PATHS = {
-    app: path.join(__dirname, 'app'),
+    app: path.join(__dirname, 'src'),
     build: path.join(__dirname, 'build')
 };
 
 var config, TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
+//TODO: refactor this in near future
 switch (TARGET) {
     case 'build':
     case 'stats':
@@ -29,6 +30,10 @@ switch (TARGET) {
                     chunkFilename: '[chunkhash:5].js'
                 }
             },
+            commonConfig.generateIndexTemplate({
+                title: 'Kanban App',
+                appMountId: 'app'
+            }),
             variableConfig.generateFreeVariable(
                 'process.env.NODE_ENV',
                 'production'
@@ -47,6 +52,10 @@ switch (TARGET) {
         console.log('Default config selected!\n');
         config = merge(
             commonConfig.generateCommonConfig(PATHS),
+            commonConfig.generateIndexTemplate({
+                title: 'Kanban App development',
+                appMountId: 'app'
+            }),
             stylesConfig.generateStylesConfig(PATHS.app),
             serverConfig.generateServerConfig()
         );

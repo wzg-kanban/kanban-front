@@ -10,11 +10,6 @@ exports.generateCommonConfig = function(PATHS) {
             path: PATHS.build,
             filename: '[name].js'
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                title: 'Kanban App'
-            })
-        ],
         module: {
             loaders: [
                 {
@@ -27,6 +22,20 @@ exports.generateCommonConfig = function(PATHS) {
         resolve: {
             extensions: ['', '.js', '.jsx']
         }
+    };
+};
+
+exports.generateIndexTemplate = function(options) {
+    return {
+        //TODO: get to know what is inject: false ???
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: require('html-webpack-template'),
+                title: options.title,
+                appMountId: options.appMountId,
+                inject: false
+            })
+        ]
     };
 };
 
