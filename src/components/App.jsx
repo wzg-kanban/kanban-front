@@ -4,6 +4,7 @@ import Notes from './Notes';
 import uuid from 'uuid';
 
 export default class App extends React.Component {
+    //TODO: try to use ESLint to force certain functions order (e.g. constructor, life cycle methods, render etc...)
     constructor(props) {
         super(props);
 
