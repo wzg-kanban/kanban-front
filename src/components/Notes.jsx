@@ -8,6 +8,7 @@ export default ({notes, onDelete = () => {}}) => (
             <Note
                 task={note.task}
                 onDelete={onDelete.bind(null, note.id)} />
+            {/*Editable component will go here*/}
         </li>
     )}</ul>
 );
