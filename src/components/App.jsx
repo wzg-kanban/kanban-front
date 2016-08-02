@@ -27,8 +27,6 @@ export default class App extends React.Component {
 
         //TODO: find solution to keep right context. Right now we need this :/
         //one that might help is: https://www.npmjs.com/package/autobind-decorator
-        this.addNote = this.addNote.bind(this);
-        this.deleteNote = this.deleteNote.bind(this);
     }
 
     render() {
@@ -37,12 +35,16 @@ export default class App extends React.Component {
         return (
             <div>
                 <button onClick={this.addNote}>+</button>
-                <Notes notes={notes} onDelete={this.deleteNote}/>
+                <Notes
+                    notes={notes}
+                    onDelete={this.deleteNote}
+                    onEdit={this.editNote}
+                    onNoteClick={this.activateNoteEdit}/>
             </div>
         );
     }
 
-    addNote() {
+    addNote = () => {
         //TODO: read more about immutable.js
         //Not using .push, because concating two arrays create new array and it's better than altering existing state
         //Check for immutable.js. It's highly connected to Functional Programming paradigm :)
@@ -52,15 +54,36 @@ export default class App extends React.Component {
                 task: 'new task'
             }])
         });
-    }
+    };
 
-    deleteNote(id, e) {
+    deleteNote = (id, e) => {
         e.stopPropagation();
 
         this.setState({
             notes: this.state.notes.filter(note => note.id !== id)
         });
-    }
+    };
+
+    editNote = (id, task) => {
+        this.setState({
+            notes: this.state.notes.map(note => {
+               if(note.id === id) {
+                   note.editing = false;
+                   note.task = task;
+               }
+               return note;
+            })
+        })
+    };
+
+    activateNoteEdit = (id) => {
+        this.setState({
+            notes: this.state.notes.map(note => {
+                if(note.id === id) note.editing = true;
+                return note;
+            })
+        })
+    };
 
 
 }
