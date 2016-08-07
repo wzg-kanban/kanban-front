@@ -3,8 +3,8 @@ import styles from './App.css';
 import React from 'react';
 import Notes from './Notes';
 import uuid from 'uuid';
-
 import connect from '../libs/connect';
+import NoteActions from '../actions/NoteActions';
 
 //TODO: App class doesn't have state no more. Change it to function base component!
 class App extends React.Component {
@@ -29,44 +29,28 @@ class App extends React.Component {
         //TODO: read more about immutable.js
         //Not using .push, because concating two arrays create new array and it's better than altering existing state
         //Check for immutable.js. It's highly connected to Functional Programming paradigm :)
-        this.setState({
-            notes: this.state.notes.concat([{
-                id: uuid.v4(),
-                task: 'new task'
-            }])
+        this.props.NoteActions.create({
+            id: uuid.v4(),
+            task: 'New task'
         });
     };
 
     deleteNote = (id, e) => {
         e.stopPropagation();
-
-        this.setState({
-            notes: this.state.notes.filter(note => note.id !== id)
-        });
+        this.props.NoteActions.delete(id);
     };
 
     editNote = (id, task) => {
-        this.setState({
-            notes: this.state.notes.map(note => {
-               if(note.id === id) {
-                   note.editing = false;
-                   note.task = task;
-               }
-               return note;
-            })
-        })
+        this.props.NoteActions.update({id, task, editing: false});
     };
 
     activateNoteEdit = (id) => {
-        this.setState({
-            notes: this.state.notes.map(note => {
-                if(note.id === id) note.editing = true;
-                return note;
-            })
-        })
+        this.props.NoteActions.update({id, editing: true});
     };
 }
 
 export default connect(({notes})=>({
     notes
-}))(App)
+}), {
+    NoteActions
+})(App)
