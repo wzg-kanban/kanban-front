@@ -1,4 +1,5 @@
 // Just for test purposes
+import styles from './App.css';
 import React from 'react';
 import Notes from './Notes';
 import uuid from 'uuid';
@@ -34,7 +35,7 @@ export default class App extends React.Component {
 
         return (
             <div>
-                <button onClick={this.addNote}>+</button>
+                <button className={styles.noteAdd} onClick={this.addNote}>+</button>
                 <Notes
                     notes={notes}
                     onDelete={this.deleteNote}
