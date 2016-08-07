@@ -6,38 +6,15 @@ import uuid from 'uuid';
 
 import connect from '../libs/connect';
 
+//TODO: App class doesn't have state no more. Change it to function base component!
 class App extends React.Component {
     //TODO: try to use ESLint to force certain functions order (e.g. constructor, life cycle methods, render etc...)
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            notes: [
-                {
-                    id: uuid.v4(),
-                    task: 'Learn React'
-                },
-                {
-                    id: uuid.v4(),
-                    task: 'Learn Webpack'
-                },
-                {
-                    id: uuid.v4(),
-                    task: 'Do laundry'
-                }
-            ]
-        };
-
-        //TODO: find solution to keep right context. Right now we need this :/
-        //one that might help is: https://www.npmjs.com/package/autobind-decorator
-    }
 
     render() {
-        const {notes} = this.state;
+        const {notes} = this.props;
 
         return (
             <div>
-                {this.props.test}
                 <button className={styles.noteAdd} onClick={this.addNote}>+</button>
                 <Notes
                     notes={notes}
@@ -90,6 +67,6 @@ class App extends React.Component {
     };
 }
 
-export default connect(()=>({
-    test: 'alt connect test'
+export default connect(({notes})=>({
+    notes
 }))(App)
