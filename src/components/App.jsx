@@ -4,7 +4,9 @@ import React from 'react';
 import Notes from './Notes';
 import uuid from 'uuid';
 
-export default class App extends React.Component {
+import connect from '../libs/connect';
+
+class App extends React.Component {
     //TODO: try to use ESLint to force certain functions order (e.g. constructor, life cycle methods, render etc...)
     constructor(props) {
         super(props);
@@ -35,6 +37,7 @@ export default class App extends React.Component {
 
         return (
             <div>
+                {this.props.test}
                 <button className={styles.noteAdd} onClick={this.addNote}>+</button>
                 <Notes
                     notes={notes}
@@ -85,6 +88,8 @@ export default class App extends React.Component {
             })
         })
     };
-
-
 }
+
+export default connect(()=>({
+    test: 'alt connect test'
+}))(App)

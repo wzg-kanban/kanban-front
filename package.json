@@ -32,6 +32,7 @@
     "html-webpack-template": "^5.0.0",
     "jest-cli": "^14.0.1",
     "purifycss-webpack-plugin": "^2.0.3",
+    "react-addons-perf": "^15.3.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
@@ -39,7 +40,11 @@
     "webpack-validator": "^2.2.6"
   },
   "dependencies": {
+    "alt": "^0.18.5",
+    "alt-container": "^1.0.2",
+    "alt-utils": "^1.0.0",
     "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "uuid": "^2.0.2"
   }
 }

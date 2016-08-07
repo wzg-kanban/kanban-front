@@ -36,6 +36,9 @@ class Edit extends React.Component {
 }
 
 Editable.Edit = Edit;
-Editable.Value = ({value, ...props}) => <span {...props}>{value}</span>
+Editable.Value = ({value, ...props}) =>
+    <span {...props}>
+        {value}
+    </span>;
 
 export default Editable;
