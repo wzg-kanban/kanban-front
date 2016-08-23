@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import NoteActions from '../actions/NoteActions';
 
 export default class NoteStore {
@@ -8,6 +7,9 @@ export default class NoteStore {
     }
 
     create(note) {
+        //TODO: read more about immutable.js
+        //Not using .push, because concatenating two arrays create new array and it's better than altering existing state
+        //Check for immutable.js. It's highly connected to Functional Programming paradigm :)
         this.setState({
             notes: this.notes.concat(note)
         });
