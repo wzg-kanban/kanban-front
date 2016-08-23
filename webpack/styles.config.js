@@ -2,6 +2,7 @@
 //TODO: there is problem with CSS hash reloading when changing js and vice versa
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
+const cssLoaderQuery = 'css?modules&localIdentName=[name]--[local]--[hash:base64:5]';
 
 exports.generateStylesConfig = function(PATHS) {
     return {
@@ -9,7 +10,7 @@ exports.generateStylesConfig = function(PATHS) {
             loaders: [
                 {
                     test: /\.css$/,
-                    loader: 'style!css?modules&localIdentName=[name]--[local]--[hash:base64:5]',
+                    loader: `style!${cssLoaderQuery}`,
                     include: PATHS,
                 }
             ]
@@ -17,7 +18,7 @@ exports.generateStylesConfig = function(PATHS) {
     };
 };
 
-exports.extractCSS = function(paths) {
+exports.extractCSS = function(PATHS) {
     return {
         module: {
             loaders: [
@@ -25,8 +26,8 @@ exports.extractCSS = function(paths) {
                     test: /\.css$/,
                     loader: ExtractTextPlugin.extract(
                         'style',
-                        'css?modules&localIdentName=[name]--[local]--[hash:base64:5]'),
-                    include: paths
+                        cssLoaderQuery),
+                    include: PATHS
                 }
             ]
         },
@@ -36,12 +37,12 @@ exports.extractCSS = function(paths) {
     };
 };
 
-exports.purifyCSS = function(paths) {
+exports.purifyCSS = function(PATHS) {
     return {
         plugins: [
             new PurifyCSSPlugin({
                 basePath: process.cwd(),
-                paths: paths
+                paths: PATHS
             }),
         ]
     }
