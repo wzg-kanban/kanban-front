@@ -15,6 +15,17 @@ export default class ColumnStore {
         });
     }
 
+    update(updatedColumn) {
+        this.setState({
+            columns: this.columns.map(column => {
+                if(column.id === updatedColumn.id){
+                    return Object.assign({}, column, updatedColumn);
+                }
+                return column;
+            })
+        });
+    }
+
     attachToColumn({columnId, noteId}) {
         this.setState({
             columns: this.columns.map(column => {

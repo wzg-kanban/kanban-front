@@ -1,3 +1,3 @@
 import alt from '../libs/alt';
 
-export default alt.generateActions('create', 'attachToColumn', 'detachFromColumn');
+export default alt.generateActions('create', 'update', 'attachToColumn', 'detachFromColumn');
