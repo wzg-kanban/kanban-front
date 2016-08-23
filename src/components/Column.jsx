@@ -1,4 +1,5 @@
 // Just for test purposes
+import styles from './Column.css';
 import React from 'react';
 import connect from '../libs/connect';
 import NoteActions from '../actions/NoteActions';
@@ -21,7 +22,7 @@ const Column = ({column, notes, ColumnActions, NoteActions, ...props}) => {
     };
 
     return (
-        <div {...props}>
+        <div {...props} className={styles.column}>
             <ColumnHeader column={column}/>
             <Notes
                 notes={selectNotesByIds(notes, column.notes)}

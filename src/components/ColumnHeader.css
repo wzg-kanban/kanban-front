@@ -1,0 +1,47 @@
+.columnHeader {
+    overflow: auto;
+    padding: 5px;
+    color: #efefef;
+    background-color: #333;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.columnName {
+    float: left;
+}
+
+.columnAddNote {
+    float: left;
+
+    margin-right: 0.5em;
+}
+
+.columnDelete {
+    float: right;
+
+    margin-left: 0.5em;
+
+    visibility: hidden;
+}
+.columnHeader:hover .columnDelete {
+    visibility: visible;
+}
+
+.addColumn, .columnAddNote button {
+    cursor: pointer;
+
+    background-color: #fdfdfd;
+    border: 1px solid #ccc;
+}
+
+.columnDelete button {
+    padding: 0;
+
+    cursor: pointer;
+
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    font-size: 16px;
+}

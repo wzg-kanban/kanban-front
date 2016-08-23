@@ -1,3 +1,4 @@
+import styles from './ColumnHeader.css';
 import React from 'react';
 import uuid from 'uuid';
 import connect from '../libs/connect';
@@ -45,12 +46,12 @@ export default connect(() => ({}), {
     };
 
     return (
-        <div className="column-header" onClick={activateColumnEdit} {...props}>
-            <div className="column-add-note">
+        <div className={styles.columnHeader} onClick={activateColumnEdit} {...props}>
+            <div className={styles.columnAddNote}>
                 <button onClick={addNote}>+</button>
             </div>
-            <Editable className="column-name" value={column.name} onEdit={editName} editing={column.editing}/>
-            <div className="column-delete">
+            <Editable className={styles.columnName} value={column.name} onEdit={editName} editing={column.editing}/>
+            <div className={styles.columnDelete}>
                 <button onClick={deleteColumn}>x</button>
             </div>
         </div>

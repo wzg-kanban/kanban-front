@@ -1,0 +1,9 @@
+.column {
+    display: inline-block;
+    margin: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 200px;
+    vertical-align: top;
+}
