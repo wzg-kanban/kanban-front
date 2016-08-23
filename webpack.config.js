@@ -56,6 +56,9 @@ switch (TARGET) {
                 title: 'Kanban App development',
                 appMountId: 'app'
             }),
+            {
+                devtool: 'eval-source-map'
+            },
             stylesConfig.generateStylesConfig(PATHS.app),
             serverConfig.generateServerConfig()
         );
