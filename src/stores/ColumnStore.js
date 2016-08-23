@@ -26,6 +26,12 @@ export default class ColumnStore {
         });
     }
 
+    delete(id) {
+        this.setState({
+            columns: this.columns.filter(column => column.id !== id)
+        })
+    }
+
     attachToColumn({columnId, noteId}) {
         this.setState({
             columns: this.columns.map(column => {

@@ -24,6 +24,12 @@ export default connect(() => ({}), {
         });
     };
 
+    const deleteColumn = e => {
+        e.stopPropagation();
+
+        ColumnActions.delete(column.id);
+    };
+
     const activateColumnEdit = () => {
         ColumnActions.update({
             id: column.id,
@@ -44,6 +50,9 @@ export default connect(() => ({}), {
                 <button onClick={addNote}>+</button>
             </div>
             <Editable className="column-name" value={column.name} onEdit={editName} editing={column.editing}/>
+            <div className="column-delete">
+                <button onClick={deleteColumn}>x</button>
+            </div>
         </div>
     );
 })
