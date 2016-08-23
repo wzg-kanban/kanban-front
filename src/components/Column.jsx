@@ -1,29 +1,15 @@
 // Just for test purposes
 import React from 'react';
-import uuid from 'uuid';
 import connect from '../libs/connect';
 import NoteActions from '../actions/NoteActions';
 import ColumnActions from '../actions/ColumnActions';
 import Notes from './Notes';
+import ColumnHeader from './ColumnHeader';
 
 const Column = ({column, notes, ColumnActions, NoteActions, ...props}) => {
 
     const editNote = (id, task) => {
         NoteActions.update({id, task, editing: false});
-    };
-    const addNote = e => {
-        e.stopPropagation();
-
-        const noteId = uuid.v4();
-        NoteActions.create({
-            id: noteId,
-            task: 'New task'
-        });
-        ColumnActions.attachToColumn({
-            columnId: column.id,
-            noteId: noteId
-        });
-
     };
     const deleteNote = (noteId, e) => {
         e.stopPropagation();
@@ -36,12 +22,7 @@ const Column = ({column, notes, ColumnActions, NoteActions, ...props}) => {
 
     return (
         <div {...props}>
-            <div className="column-header">
-                <div className="column-add-note">
-                    <button onClick={addNote}>+</button>
-                </div>
-                <div className="column-name">{column.name}</div>
-            </div>
+            <ColumnHeader column={column}/>
             <Notes
                 notes={selectNotesByIds(notes, column.notes)}
                 onNoteClick={activateNoteEdit}
