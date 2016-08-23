@@ -35,10 +35,9 @@ const Column = ({column, notes, ColumnActions, NoteActions, ...props}) => {
 
 function selectNotesByIds(allNotes, noteIds = []) {
     return noteIds.reduce((notes, id) =>
-            notes.concat(
-                allNotes.filter(note => note.id === id)
-            )
-        , []);
+        notes.concat(
+            allNotes.filter(note => note.id === id)
+        ), []);
 }
 
 export default connect(

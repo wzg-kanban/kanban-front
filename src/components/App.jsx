@@ -5,7 +5,7 @@ import connect from '../libs/connect';
 import Columns from './Columns';
 import ColumnActions from '../actions/ColumnActions';
 
-const App = ({ColumnActions, columns}) => {
+const App = ({columns, ColumnActions}) => {
     //TODO: try to use ESLint to force certain functions order (e.g. constructor, life cycle methods, render etc...)
 
     const addColumn = () => {
@@ -21,8 +21,6 @@ const App = ({ColumnActions, columns}) => {
             <Columns columns={columns}/>
         </div>
     );
-
-
 };
 
 export default connect(({columns}) => ({

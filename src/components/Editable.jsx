@@ -1,11 +1,9 @@
 import React from 'react';
 
 const Editable = ({editing, value, onEdit}) => {
-    if(editing) {
-        return <Editable.Edit value={value} onEdit={onEdit} />;
-    }
-
-    return <Editable.Value value={value} />;
+    return editing ?
+        <Editable.Edit value={value} onEdit={onEdit} /> :
+        <Editable.Value value={value} />;
 };
 
 class Edit extends React.Component {
@@ -35,10 +33,12 @@ class Edit extends React.Component {
     };
 }
 
-Editable.Edit = Edit;
-Editable.Value = ({value, ...props}) =>
+const Value = ({value, ...props}) =>
     <span {...props}>
         {value}
     </span>;
+
+Editable.Edit = Edit;
+Editable.Value = Value;
 
 export default Editable;

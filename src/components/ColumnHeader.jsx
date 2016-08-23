@@ -6,10 +6,7 @@ import NoteActions from '../actions/NoteActions';
 import ColumnActions from '../actions/ColumnActions';
 import Editable from './Editable';
 
-export default connect(() => ({}), {
-    NoteActions,
-    ColumnActions
-})(({column, ColumnActions, NoteActions, ...props}) => {
+const ColumnHeader = ({column, ColumnActions, NoteActions, ...props}) => {
     const addNote = e => {
         e.stopPropagation();
 
@@ -56,4 +53,9 @@ export default connect(() => ({}), {
             </div>
         </div>
     );
-})
+};
+
+export default connect(() => ({}), {
+    NoteActions,
+    ColumnActions
+})(ColumnHeader);
