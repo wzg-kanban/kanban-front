@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 exports.generateServerConfig = function(options) {
     if(!options) {
@@ -16,7 +17,8 @@ exports.generateServerConfig = function(options) {
         plugins: [
             new webpack.HotModuleReplacementPlugin({
                 multiStep: true
-            })
+            }),
+            new DashboardPlugin()
         ]
     };
 };
