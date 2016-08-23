@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
-exports.generateServerConfig = function(options) {
+exports.generateDevServerConfig = function(options) {
     if(!options) {
         options = {};
     }

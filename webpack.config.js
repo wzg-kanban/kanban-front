@@ -60,7 +60,7 @@ switch (TARGET) {
                 devtool: 'eval-source-map'
             },
             stylesConfig.generateStylesConfig(PATHS.app),
-            serverConfig.generateServerConfig()
+            serverConfig.generateDevServerConfig()
         );
 }
 
