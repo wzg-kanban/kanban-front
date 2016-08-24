@@ -1,8 +1,8 @@
 .columnHeader {
     overflow: auto;
     padding: 5px;
-    color: #efefef;
-    background-color: #333;
+    color: #333;
+    font-weight: bold;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -40,7 +40,7 @@
 
     cursor: pointer;
 
-    color: white;
+    color: #333;
     background-color: rgba(0, 0, 0, 0);
     border: 0;
     font-size: 16px;

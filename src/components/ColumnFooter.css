@@ -1,0 +1,19 @@
+.columnFooter {
+    overflow: auto;
+    padding: 5px;
+    color: #333;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.columnName {
+    float: left;
+}
+
+.columnAddNote {
+    cursor: pointer;
+}
+
+.columnAddNote:hover {
+    text-decoration: underline;
+}

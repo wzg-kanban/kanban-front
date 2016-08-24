@@ -6,6 +6,7 @@ import NoteActions from '../actions/NoteActions';
 import ColumnActions from '../actions/ColumnActions';
 import Notes from './Notes';
 import ColumnHeader from './ColumnHeader';
+import ColumnFooter from './ColumnFooter';
 
 const Column = ({column, notes, ColumnActions, NoteActions, ...props}) => {
 
@@ -29,6 +30,7 @@ const Column = ({column, notes, ColumnActions, NoteActions, ...props}) => {
                 onNoteClick={activateNoteEdit}
                 onEdit={editNote}
                 onDelete={deleteNote} />
+            <ColumnFooter column={column}/>
         </div>
     );
 };
