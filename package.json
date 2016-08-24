@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dashboard -- webpack-dev-server --config ./webpack.config.js",
-    "stats": "webpack --profile --json > stats.json"
+    "stats": "webpack --profile --json > stats.json",
+    "test": "mocha --require test/.setup.js test/**/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -24,15 +25,19 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
-    "babel-preset-stage-2": "^6.11.0",
+    "babel-register": "^6.11.6",
     "clean-webpack-plugin": "^0.1.10",
     "css-loader": "^0.23.1",
+    "enzyme": "^2.4.1",
+    "expect": "^1.20.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.22.0",
     "html-webpack-template": "^5.0.0",
-    "jest-cli": "^14.0.1",
+    "jsdom": "^9.4.2",
+    "mocha": "^3.0.2",
     "purifycss-webpack-plugin": "^2.0.3",
-    "react-addons-perf": "^15.3.0",
+    "react-addons-perf": "^15.3.1",
+    "react-addons-test-utils": "^15.3.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dashboard": "^0.1.7",
@@ -44,8 +49,8 @@
     "alt": "^0.18.5",
     "alt-container": "^1.0.2",
     "alt-utils": "^1.0.0",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "uuid": "^2.0.2"
   }
 }
