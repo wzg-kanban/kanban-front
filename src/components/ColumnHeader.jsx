@@ -1,16 +1,17 @@
 import styles from './ColumnHeader.css';
 import React from 'react';
-import uuid from 'uuid';
 import connect from '../libs/connect';
-import NoteActions from '../actions/NoteActions';
 import ColumnActions from '../actions/ColumnActions';
+import NoteActions from '../actions/NoteActions';
 import Editable from './Editable';
 
-const ColumnHeader = ({column, ColumnActions, ...props}) => {
+const ColumnHeader = ({column, ColumnActions, NoteActions, ...props}) => {
 
     const deleteColumn = e => {
         e.stopPropagation();
-
+        column.notes.forEach( note => {
+            NoteActions.delete(note);
+        });
         ColumnActions.delete(column.id);
     };
 
@@ -42,5 +43,6 @@ const ColumnHeader = ({column, ColumnActions, ...props}) => {
 };
 
 export default connect(() => ({}), {
-    ColumnActions
+    ColumnActions,
+    NoteActions
 })(ColumnHeader);

@@ -1,4 +1,5 @@
 import ColumnActions from '../actions/ColumnActions';
+import update from 'react-addons-update';
 
 export default class ColumnStore {
     constructor() {
@@ -55,5 +56,33 @@ export default class ColumnStore {
                 return column;
             })
         })
+    }
+
+    //TODO: It's late, but I need to understand it later (yes, I copied that. Sorry :( )
+    move({sourceId, targetId}) {
+        const columns = this.columns;
+        const sourceColumn = columns.filter(column => column.notes.includes(sourceId))[0];
+        const targetColumn = columns.filter(column => column.notes.includes(targetId))[0];
+        const sourceNoteIndex = sourceColumn.notes.indexOf(sourceId);
+        const targetNoteIndex = targetColumn.notes.indexOf(targetId);
+
+        if(sourceColumn === targetColumn) {
+            // move at once to avoid complications
+            sourceColumn.notes = update(sourceColumn.notes, {
+                $splice: [
+                    [sourceNoteIndex, 1],
+                    [targetNoteIndex, 0, sourceId]
+                ]
+            });
+        }
+        else {
+            // get rid of the source
+            sourceColumn.notes.splice(sourceNoteIndex, 1);
+
+            // and move it to target
+            targetColumn.notes.splice(targetNoteIndex, 0, sourceId);
+        }
+
+        this.setState({columns});
     }
 }
