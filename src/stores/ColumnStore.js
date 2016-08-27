@@ -36,7 +36,7 @@ export default class ColumnStore {
     attachToColumn({columnId, noteId}) {
         this.setState({
             columns: this.columns.map(column => {
-                if(column.notes.includes(columnId)) {
+                if(column.notes.includes(noteId)) {
                     column.notes = column.notes.filter(note => note !== noteId);
                 }
                 if(column.id === columnId) {

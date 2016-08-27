@@ -1,6 +1,6 @@
 import styles from './Note.css';
 import React from 'react';
-import {compose} from 'redux';
+import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
 
@@ -12,7 +12,6 @@ const Note = ({
 
     const dragSource = editing ? a => a : connectDragSource;
 
-    //TODO: don't know why like this in here yet
     return compose(dragSource, connectDropTarget)(
         <div style={{
             opacity: isDragging || isOver ? 0.4 : 1
