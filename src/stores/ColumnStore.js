@@ -47,7 +47,7 @@ export default class ColumnStore {
         });
     }
 
-    detachFromColumn(noteId, columnId) {
+    detachFromColumn({noteId, columnId}) {
         this.setState({
             columns: this.columns.map(column => {
                 if(column.id === columnId) {

@@ -18,7 +18,7 @@ const Column = ({connectDropTarget, column, notes, ColumnActions, NoteActions, .
     };
     const deleteNote = (noteId, e) => {
         e.stopPropagation();
-        ColumnActions.detachFromColumn(noteId, column.id);
+        ColumnActions.detachFromColumn({noteId, columnId: column.id});
         NoteActions.delete(noteId);
     };
     const activateNoteEdit = id => {
