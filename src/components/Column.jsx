@@ -1,11 +1,11 @@
 // Just for test purposes
 import styles from './Column.css';
 import React from 'react';
-import connect from '../libs/connect';
-import NoteActions from '../actions/NoteActions';
-import ColumnActions from '../actions/ColumnActions';
+import connect from 'libs/connect';
+import NoteActions from 'actions/NoteActions';
+import ColumnActions from 'actions/ColumnActions';
 import { DropTarget } from 'react-dnd';
-import ItemTypes from '../constants/itemTypes';
+import ItemTypes from 'constants/itemTypes';
 import { compose } from 'redux';
 import Notes from './Notes';
 import ColumnHeader from './ColumnHeader';

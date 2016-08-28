@@ -10,6 +10,7 @@ const variableConfig = require('./webpack/variables.config');
 
 const PATHS = {
     app: path.join(__dirname, 'src'),
+    nodeModules: path.join(__dirname, 'src'),
     build: path.join(__dirname, 'build')
 };
 

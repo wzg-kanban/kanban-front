@@ -1,4 +1,4 @@
-import ColumnActions from '../actions/ColumnActions';
+import ColumnActions from 'actions/ColumnActions';
 import update from 'react-addons-update';
 
 export default class ColumnStore {

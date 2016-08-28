@@ -2,7 +2,7 @@ import styles from './Note.css';
 import React from 'react';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
-import ItemTypes from '../constants/itemTypes';
+import ItemTypes from 'constants/itemTypes';
 
 //TODO: still no decorators for functions. ONLY CLASSES SUPPORTED! :(
 const Note = ({

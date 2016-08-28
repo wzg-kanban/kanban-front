@@ -20,7 +20,8 @@ exports.generateCommonConfig = function(PATHS) {
             ]
         },
         resolve: {
-            extensions: ['', '.js', '.jsx']
+            extensions: ['', '.js', '.jsx'],
+            root: [PATHS.app, PATHS.nodeModules]
         }
     };
 };

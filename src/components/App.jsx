@@ -1,9 +1,9 @@
 import styles from './App.css';
 import React from 'react';
 import uuid from 'uuid';
-import connect from '../libs/connect';
+import connect from 'libs/connect';
 import Columns from './Columns';
-import ColumnActions from '../actions/ColumnActions';
+import ColumnActions from 'actions/ColumnActions';
 import { compose } from 'redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';

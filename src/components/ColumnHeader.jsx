@@ -1,8 +1,8 @@
 import styles from './ColumnHeader.css';
 import React from 'react';
-import connect from '../libs/connect';
-import ColumnActions from '../actions/ColumnActions';
-import NoteActions from '../actions/NoteActions';
+import connect from 'libs/connect';
+import ColumnActions from 'actions/ColumnActions';
+import NoteActions from 'actions/NoteActions';
 import Editable from './Editable';
 
 const ColumnHeader = ({column, ColumnActions, NoteActions, ...props}) => {
