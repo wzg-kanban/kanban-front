@@ -4,14 +4,17 @@ import React from 'react';
 import connect from 'libs/connect';
 import NoteActions from 'actions/NoteActions';
 import ColumnActions from 'actions/ColumnActions';
-import { DropTarget } from 'react-dnd';
+import { DropTarget, DragSource } from 'react-dnd';
 import ItemTypes from 'constants/itemTypes';
 import { compose } from 'redux';
 import Notes from './Notes';
 import ColumnHeader from './ColumnHeader';
 import ColumnFooter from './ColumnFooter';
 
-const Column = ({connectDropTarget, column, notes, ColumnActions, NoteActions, ...props}) => {
+const Column = ({
+    connectNoteDropTarget, connectColumnDragSource, connectColumnDropTarget,
+    column, notes, onMove, id, isDragging, isOver, ColumnActions,
+    NoteActions, ...props}) => {
 
     const editNote = (id, task) => {
         NoteActions.update({id, task, editing: false});
@@ -29,8 +32,10 @@ const Column = ({connectDropTarget, column, notes, ColumnActions, NoteActions, .
         ColumnActions.move(task);
     };
 
-    return connectDropTarget(
-        <div {...props} className={styles.column}>
+    return compose(connectColumnDragSource, connectColumnDropTarget, connectNoteDropTarget)(
+        <div style={{
+                opacity: isDragging || isOver ? 0.4 : 1
+            }} {...props} className={styles.column}>
             <ColumnHeader column={column}/>
             <Notes
                 notes={selectNotesByIds(notes, column.notes)}
@@ -59,6 +64,26 @@ const noteTarget = {
     }
 };
 
+const columnSource = {
+    beginDrag(props) {
+        return {
+            id: props.id
+        };
+    }
+};
+
+const columnTarget = {
+    hover(targetProps, monitor) {
+        const targetId = targetProps.id;
+        const sourceProps = monitor.getItem();
+        const sourceId = sourceProps.id;
+
+        if (sourceId !== targetId) {
+            targetProps.onMove({sourceId, targetId});
+        }
+    }
+};
+
 function selectNotesByIds(allNotes, noteIds = []) {
     return noteIds.reduce((notes, id) =>
         notes.concat(
@@ -68,7 +93,13 @@ function selectNotesByIds(allNotes, noteIds = []) {
 
 export default compose(
     DropTarget(ItemTypes.NOTE, noteTarget, connect => ({
-        connectDropTarget: connect.dropTarget()
+        connectNoteDropTarget: connect.dropTarget()
+    })),
+    DragSource(ItemTypes.COLUMN, columnSource, connect => ({
+        connectColumnDragSource: connect.dragSource()
+    })),
+    DropTarget(ItemTypes.COLUMN, columnTarget, connect => ({
+        connectColumnDropTarget: connect.dropTarget()
     })),
     connect(({notes}) => ({
         notes

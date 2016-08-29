@@ -58,7 +58,6 @@ export default class ColumnStore {
         })
     }
 
-    //TODO: It's late, but I need to understand it later (yes, I copied that. Sorry :( )
     move({sourceId, targetId}) {
         const columns = this.columns;
         const sourceColumn = columns.filter(column => column.notes.includes(sourceId))[0];
@@ -84,5 +83,15 @@ export default class ColumnStore {
         }
 
         this.setState({columns});
+    }
+
+    moveColumns({sourceId, targetId}) {
+        //TODO: I believe I did something wrong here. What about notes?
+        this.columns = update(this.columns, {
+            $splice: [
+                [sourceId, 1],
+                [targetId, 0, sourceId]
+            ]
+        });
     }
 }

@@ -19,10 +19,14 @@ const App = ({columns, ColumnActions}) => {
         });
     };
 
+    const moveColumns = (id, column) => {
+        ColumnActions.moveColumns(column);
+    };
+
     return (
         <div>
             <button className={styles.columnAdd} onClick={addColumn}>+</button>
-            <Columns columns={columns}/>
+            <Columns columns={columns} onMove={moveColumns}/>
         </div>
     );
 };
